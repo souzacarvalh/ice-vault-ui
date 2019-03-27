@@ -1,6 +1,8 @@
-# IceVaultUi
+# IceVault
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+Welcome to IceVault Services
+
+The IceVault is a safe place where you can keep your sensitive information.
 
 ## Development server
 
