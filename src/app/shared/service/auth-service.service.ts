@@ -8,7 +8,7 @@ import { AuthModel } from '../model/auth.model';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
     constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
 

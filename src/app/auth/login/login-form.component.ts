@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthModel } from '../../shared/model/auth.model';
-import { AuthServiceService } from '../../shared/service/auth-service.service';
+import { AuthService } from '../../shared/service/auth-service.service';
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   error: any;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthServiceService, private cookieService: CookieService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private cookieService: CookieService) { }
 
   ngOnInit() {
     this.initForm();

@@ -1,0 +1,23 @@
+<app-header *ngIf="isLogged()"></app-header>
+<div id="wrapper">
+    <header *ngIf="isLogged()">
+        <h1>IceVault</h1>
+        <a href="javascript:void(0)" (click)="logOut()">Logout</a>
+    </header>
+    <main>
+        <div>
+            <app-message></app-message>
+            <div>
+                <div>
+                    <div class="encrypt-form-wrapper">
+                        <app-encrypt-form></app-encrypt-form>
+                    </div>
+                    <div class="secrets-grid-wrapper">
+                        <app-secrets-grid></app-secrets-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <app-footer *ngIf="isLogged()"></app-footer>
+</div>
