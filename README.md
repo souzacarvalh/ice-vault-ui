@@ -4,30 +4,23 @@ Welcome to IceVault
 
 The IceVault is a safe place where you can keep your sensitive information.
 
-## Development server
+## How does it work?
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The vault is designed to safely store the user's data using encryption methods for the data in-transit and at rest. When a new user is created (what can be performed only by admin users), the vault assigns to him a new pair of RSA keys (public/private) of 2048 bits which will be linked to this user and can be only used by him. Whenever this user successfully logs in the system using his personal credentials, a new JWT token containing his public key is returned to him for performing the next the data encryption/decryption operations - while his private key never leaves the server. 
 
-## Code scaffolding
+When he creates a new "secret" (sensitive data), the system will actually encrypt the data using AES encryption with a random passphrase, and will encrypt this key with the user's personal RSA public key before sending to the server for storage. When the data arrives in the server, the passphase is decrypted and encrypted again, but now using the user's private key and finally, it is store in the database.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+When the user wants to retrieve the secret and check it as plain text, the server will send him the encrypted data which can be only descrypted having the corresponding key.
 
-## Build
+To avoid interception, the HTTPS should always be enabled in production servers with the proper signed certificates.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## How do I run it?
 
-## Running unit tests
+Execute 'ng serve' it will start up a dev server on http://localhost:4200
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Dev Requirements
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-"# ice-vault-ui" 
+NodeJS (npm) and ng (Angular-CLI)
 
 ### Who do I talk to? ###
 
