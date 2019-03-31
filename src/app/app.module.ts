@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, ChangeDetectorRef } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -16,6 +17,20 @@ import { SecretsGridComponent } from './home/secrets-grid/secrets-grid.component
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { MessageComponent } from './ui/message/message.component';
+import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION, PB_DIRECTION } from  'ngx-ui-loader';
+import { MatCardModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule, MatToolbarModule,
+    MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatPaginatorModule,
+    MatSortModule, MatTableModule } from '@angular/material';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  fgsColor: '#FE4949',
+  fgsPosition: POSITION.centerCenter,
+  fgsSize: 60,
+  fgsType: SPINNER.foldingCube,
+  pbDirection: PB_DIRECTION.leftToRight,
+  pbThickness: 10,
+  pbColor: '#FE4949'
+};
 
 @NgModule({
   declarations: [
@@ -26,19 +41,36 @@ import { MessageComponent } from './ui/message/message.component';
     SecretsGridComponent,
     HeaderComponent,
     FooterComponent,
-    MessageComponent
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,
     CookieService,
     AuthGuard,
+    ChangeDetectorRef,
+    SecretsGridComponent,
 		{
 			provide: HttpClientModule
     },

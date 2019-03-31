@@ -1,0 +1,21 @@
+button {
+    width: 200px;
+    height: 33px;
+    background-color: #FE4949;
+    color: #FFF;
+    font-weight: bolder;
+    font-size: 10pt;
+    border: 1px solid #CCC;
+}
+
+#loginButton {
+    margin-top: 20px;
+}
+
+#loginTable td {
+    padding: 5px 3px 2px 3px;
+}
+
+#loginButton {
+    margin-top: 25px;
+}

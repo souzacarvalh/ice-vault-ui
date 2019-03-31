@@ -1,18 +1,30 @@
-<div class="form-group">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">                  
-            <div *ngIf="submitted && error" class="invalid-field">Authentication Failed!</div>
-        </div>              
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" formControlName="username" required  class="form-control" id="username" [ngClass]="{'input-invalid': submitted && loginForm.controls['username'].errors}">                
-            <div *ngIf="submitted && loginForm.controls['username'] && loginForm.controls['username'].errors && loginForm.controls['username'].errors.required" class="invalid-field">You must inform your username</div>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'input-invalid': submitted && loginForm.controls['password'].errors}">
-            <div *ngIf="submitted && loginForm.controls['username'] && loginForm.controls['password'].errors && loginForm.controls['password'].errors.required" class="invalid-field">You must inform your password</div>
-        </div>                         
-        <button type="submit" class="btn btn-primary form-control">Login</button>
-    </form>
+<div id="login-container" class="center-screen">
+    <div id="login-logo-wrapper">
+            <img id=logo src="../../../assets/images/logo.png">
+    </div>
+    <div class="form-group">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+            <table id="loginTable">           
+                <tr class="form-group">
+                    <td><label for="username">Username</label></td>
+                    <td><input type="text" formControlName="username" required  class="form-control" id="username" [ngClass]="{'input-invalid': submitted && loginForm.controls['username'].errors}"></td>                
+                    <td><div *ngIf="submitted && loginForm.controls['username'] && loginForm.controls['username'].errors && loginForm.controls['username'].errors.required" class="invalid-field">You must inform your username</div></td>
+                </tr>
+                <tr class="form-group">
+                    <td><label for="password">Password</label></td>
+                    <td><input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'input-invalid': submitted && loginForm.controls['password'].errors}"></td>
+                    <td><div *ngIf="submitted && loginForm.controls['username'] && loginForm.controls['password'].errors && loginForm.controls['password'].errors.required" class="invalid-field">You must inform your password</div></td>
+                </tr>  
+                <tr>                       
+                    <td colspan="3">
+                        <button type="submit" class="btn btn-primary form-control" id="loginButton">Login</button>
+                    </td>
+                </tr>
+                <tr class="form-group" colspan="3">                  
+                    <td><div *ngIf="submitted && error" class="invalid-field">Authentication Failed!</div></td>
+                </tr> 
+            </table> 
+        </form>
+    </div>
 </div>
+<app-footer></app-footer>

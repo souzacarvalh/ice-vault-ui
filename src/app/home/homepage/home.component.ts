@@ -16,8 +16,4 @@ export class HomeComponent implements OnInit {
   isLogged() {
     return this.authService.isAuthenticated();
   }
-
-  logOut() {
-    this.authService.logOut();
-  }
 }

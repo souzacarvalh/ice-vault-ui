@@ -1,7 +1,7 @@
 export class SecretModel {
 
-    data: String;
-    passphrase: String;
+    data: string;
+    passphrase: string;
     userId: BigInteger;
 
 }

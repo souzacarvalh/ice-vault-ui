@@ -1,0 +1,6 @@
+#content-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 10px;
+    float: left;
+}

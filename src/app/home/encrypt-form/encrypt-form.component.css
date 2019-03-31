@@ -1,0 +1,27 @@
+.encrypt-form-wrapper {    
+    height: 80px;
+    padding: 20px;
+    border: solid 1px #CCC;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+input#secret {
+    width: 500px;
+}
+
+button {
+    width: 150px;
+    height: 33px;
+    background-color: #FE4949;
+    color: #FFF;
+    font-weight: bolder;
+    font-size: 10pt;
+    border: 1px solid #CCC;
+}
+
+td {
+    padding: 7px 10px 7px 0;
+    text-align: left;
+}

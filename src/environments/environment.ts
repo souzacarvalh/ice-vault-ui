@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   authEndpoint : 'http://localhost:9191',
+  secretsEndpoint: 'http://localhost:9191/api/secret',
 };
 
 /*
