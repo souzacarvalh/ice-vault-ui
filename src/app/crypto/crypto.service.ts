@@ -8,6 +8,8 @@ import { SecretModel } from '../secret/model/secret.model';
 })
 export class CryptoService {
 
+  base64Pattern = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/i;
+
   constructor() { }
 
   encrypt(secret: SecretModel, publicKey: string): SecretModel {
@@ -32,6 +34,10 @@ export class CryptoService {
     secret.passphrase = passphrase;
 
     return secret;
+  }
+
+  isBase64(text: string): boolean {
+    return this.base64Pattern.test(text);
   }
 
   private rsaPublicKeyEncrypt(plainText: string, publicKey: string): string {

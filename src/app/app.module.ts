@@ -12,21 +12,22 @@ import { AuthGuard } from './auth/auth.guard';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './auth/login/login-form.component';
 import { HomeComponent } from './home/homepage/home.component'
-import { EncryptFormComponent } from './home/encrypt-form/encrypt-form.component';
-import { SecretsGridComponent } from './home/secrets-grid/secrets-grid.component';
+import { EncryptFormComponent } from './home/secret/encrypt-form/encrypt-form.component';
+import { SecretsGridComponent } from './home/secret/secrets-grid/secrets-grid.component';
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { MessageComponent } from './ui/message/message.component';
+import { SecretViewDialogComponent } from './home/secret/secret-view-dialog/secret-view-dialog.component'; 
 import { NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER, POSITION, PB_DIRECTION } from  'ngx-ui-loader';
 import { MatCardModule, MatProgressSpinnerModule, MatMenuModule, MatIconModule, MatToolbarModule,
     MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatPaginatorModule,
-    MatSortModule, MatTableModule } from '@angular/material';
+    MatSortModule, MatTableModule,  MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   fgsColor: '#FE4949',
   fgsPosition: POSITION.centerCenter,
   fgsSize: 60,
-  fgsType: SPINNER.foldingCube,
+  fgsType: SPINNER.threeStrings,
   pbDirection: PB_DIRECTION.leftToRight,
   pbThickness: 10,
   pbColor: '#FE4949'
@@ -42,6 +43,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HeaderComponent,
     FooterComponent,
     MessageComponent,
+    SecretViewDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,18 +66,19 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatTableModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     AuthService,
     CookieService,
     AuthGuard,
-    ChangeDetectorRef,
-    SecretsGridComponent,
 		{
 			provide: HttpClientModule
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SecretViewDialogComponent]
 })
 export class AppModule { }

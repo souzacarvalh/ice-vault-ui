@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { CryptoService } from '../../crypto/crypto.service';
-import { SecretService } from '../../secret/secret.service'
+import { CryptoService } from '../../../crypto/crypto.service';
+import { SecretService } from '../../../secret/secret.service'
 import { SecretModel } from 'src/app/secret/model/secret.model';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { SecretsGridComponent } from '../secrets-grid/secrets-grid.component';
+import { SecretEventsService } from '../secret-events/secret-events.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-encrypt-form',
@@ -17,12 +18,14 @@ export class EncryptFormComponent implements OnInit {
   cryptoForm: FormGroup;
   output: any;
   submitted = false;
+  secrets: SecretModel[];
 
-  constructor(private ngxService: NgxUiLoaderService, private cookieService: CookieService
-    , private cryptoService: CryptoService, private secretService: SecretService, private secretsGrid: SecretsGridComponent) {
+  constructor(private ngxService: NgxUiLoaderService, private cookieService: CookieService, private router: Router,
+    private cryptoService: CryptoService, private secretService: SecretService, private secretEventsService: SecretEventsService) {
   }
 
   ngOnInit() {
+    this.refreshSecrets()
     this.initForm();
   }
 
@@ -36,7 +39,7 @@ export class EncryptFormComponent implements OnInit {
     this.submitted = true;
 
     if (this.cryptoForm.valid) {
-      
+
       this.ngxService.start();
 
       if (this.cookieService.check('icevault-auth')) {
@@ -47,8 +50,9 @@ export class EncryptFormComponent implements OnInit {
           () => {
             let msg = `Encrypted Secret => ${encryptedSecret.data}`
             this.refreshForm();
+            this.refreshSecrets();
             this.handleSuccess(msg);
-            this.secretsGrid.refresh();
+            this.reload();
           },
           err => {
             this.handleError(err);
@@ -68,6 +72,12 @@ export class EncryptFormComponent implements OnInit {
     return this.cryptoService.encrypt(secret, authInfo.publicKey);
   }
 
+  refreshSecrets() {
+    let authInfo = JSON.parse(this.cookieService.get('icevault-auth'));
+    this.secretService.listSecrets(authInfo.userId).subscribe(secrets => { this.secrets = secrets });
+    this.secretEventsService.next(this.secrets);
+  }
+
   refreshForm() {
     this.submitted = false;
     this.cryptoForm.reset();
@@ -78,9 +88,20 @@ export class EncryptFormComponent implements OnInit {
     this.ngxService.stop();
   }
 
-
   handleError(err) {
     this.output = err;
     this.ngxService.stop();
+  }
+
+  reload() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
+
+    let currentUrl = this.router.url + '?';
+
+    this.router.navigateByUrl(currentUrl)
+      .then(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      });
   }
 }

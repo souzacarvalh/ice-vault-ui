@@ -1,22 +1,22 @@
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "../node_modules/@angular/material/prebuilt-themes/purple-green.css";
 
-body {
+body { 
     background-color: #E8E8E8;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12pt;
-    color: red;
+    color: #FE4949;
 }
 
 a:link {
-    color: red;
+    color: #FE4949;
 }
   
 a:visited {
-    color: red;
+    color: #FE4949;
 }
 
 a:hover {
-    color: red;
+    color: #FE4949;
 }
 
 input {
@@ -27,6 +27,11 @@ input {
 
 button {
     cursor: pointer;
+}
+
+.mat-icon-button .mat-icon, .mat-icon-button i {
+    margin-top: 18px;
+    color:  #FE4949;
 }
 
 .center-screen {

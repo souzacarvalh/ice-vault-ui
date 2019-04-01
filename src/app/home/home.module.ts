@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { MatDialogModule, MatDialog } from '@angular/material';
+import { SecretViewDialogComponent } from './secret/secret-view-dialog/secret-view-dialog.component'; 
 
 @NgModule({
-  declarations: [],
+  exports: [
+    MatDialogModule,
+  ],
   imports: [
-    CommonModule
-  ]
+    MatDialogModule, MatDialog, SecretViewDialogComponent
+  ],
+  declarations: [
+    SecretViewDialogComponent,
+  ],
+  entryComponents: [SecretViewDialogComponent]
 })
 export class HomeModule { }
