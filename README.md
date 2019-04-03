@@ -16,7 +16,10 @@ To avoid interception, the HTTPS should always be enabled in production servers 
 
 ## How do I run it?
 
-Execute 'ng serve' it will start up a dev server on http://localhost:4200
+1) Make sure you have node/npm and ng (AngularCLI) properly installed 
+2) In the project root folder execute the command: 'npm install' to refresh all the dependencies
+3) Execute 'ng build' for building the project
+4) Execute 'ng serve' to start up the front-end server on http://localhost:4200
 
 ## Dev Requirements
 
